@@ -7,8 +7,6 @@ export async function create(event) {
   const unique = KSUID.randomSync();
   const { name, collect } = JSON.parse(event.body);
 
-  console.log(name, collect);
-
   const createParams = {
     TableName: process.env.tableName,
     Item: {
