@@ -16,12 +16,13 @@ export async function create(event) {
       name: name,
       collect: collect,
     },
+    ReturnValues: "ALL_OLD",
     ConditionExpression: "attribute_not_exists(PK)",
   };
-  const results = await dynamoDb.put(createParams).promise();
+  await dynamoDb.put(createParams).promise();
 
   return {
     statusCode: 200,
-    body: JSON.stringify(results),
+    body: event.body,
   };
 }
